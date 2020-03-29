@@ -36,7 +36,7 @@ repos:
         types: [python]
     -   id: bandit
         name: bandit
-        entry: bandit
+        entry: bandit -s B311,B322
         language: system
         types: [python]
     -   id: isort

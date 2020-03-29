@@ -1,10 +1,14 @@
 import math
 import random
-import sys
 import time
+from functools import reduce
 from typing import Callable, Tuple
 
 Vector = Tuple[float, ...]
+
+
+def prod(iterable):
+    return reduce(lambda a, b: a * b, iterable)
 
 
 def norm(xv: Vector) -> float:
@@ -23,7 +27,7 @@ def griewank(xv: Vector) -> float:
     return (
         1.0
         + sum(((x ** 2) / 4000.0) for x in xv)
-        - math.prod((math.cos(x / math.sqrt(i + 1)) for i, x in enumerate(xv)))
+        - prod((math.cos(x / math.sqrt(i + 1)) for i, x in enumerate(xv)))
     )
 
 
@@ -71,26 +75,25 @@ def iterated_local_search(
 
 
 def main():
-    if sys.argv[1] == "0":
-        print(
-            iterated_local_search(
-                tweak=tweak_factory(0.0001),
-                large_tweak=tweak_factory(0.00001),
-                initial=random_vector(4),
-                quality=happy_cat,
-                timeout=float(sys.argv[2]),
-            )
+    t, b = input().split()
+    if b == "0":
+        result = iterated_local_search(
+            tweak=tweak_factory(0.0001),
+            large_tweak=tweak_factory(0.00001),
+            initial=random_vector(4),
+            quality=happy_cat,
+            timeout=float(t),
         )
     else:
-        print(
-            iterated_local_search(
-                tweak=tweak_factory(0.000001),
-                large_tweak=tweak_factory(0.00000001),
-                initial=random_vector(4),
-                quality=griewank,
-                timeout=float(sys.argv[2]),
-            )
+        result = iterated_local_search(
+            tweak=tweak_factory(0.000001),
+            large_tweak=tweak_factory(0.00000001),
+            initial=random_vector(4),
+            quality=griewank,
+            timeout=float(t),
         )
+
+    print(" ".join(map(str, result)))
 
 
 if __name__ == "__main__":
