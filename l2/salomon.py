@@ -16,7 +16,7 @@ def tweak(xs: Vector) -> Vector:
     return tuple(x * gauss(1, 0.1) for x in xs)
 
 
-def cooling_schedule(t: float) -> float:
+def cooling_schedule(t: float, _) -> float:
     return t * 0.999
 
 
