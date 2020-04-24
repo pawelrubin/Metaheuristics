@@ -12,6 +12,7 @@ pre-commit = "*"
 mypy = "*"
 bandit = "*"
 pyupgrade = "*"
+rope = "*"
 
 [packages]
 ipython = "*"

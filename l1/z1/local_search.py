@@ -16,11 +16,7 @@ def norm(xv: Vector) -> float:
 
 
 def happy_cat(xv: Vector) -> float:
-    return (
-        ((norm(xv) ** 2 - 4) ** 2) ** (0.125)
-        + 0.25 * (0.5 * norm(xv) ** 2 + sum(xv))
-        + 0.5
-    )
+    return ((norm(xv) ** 2 - 4) ** 2) ** (0.125) + 0.25 * (0.5 * norm(xv) ** 2 + sum(xv)) + 0.5
 
 
 def griewank(xv: Vector) -> float:

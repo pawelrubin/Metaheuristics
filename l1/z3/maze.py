@@ -73,9 +73,7 @@ class Maze:
             return path
         if random.random() < 0.6:
             i = random.randrange(len(path))
-            j = random.choice(
-                [c for c in range(1, len(path) - 1) if c < i - 1 or c > i + 1]
-            )
+            j = random.choice([c for c in range(1, len(path) - 1) if c < i - 1 or c > i + 1])
             path[i], path[j] = path[j], path[i]
             return path
         i = random.randrange(len(path) - 1)
