@@ -16,18 +16,14 @@ def tweak(xs: Vector) -> Vector:
     return tuple(x * gauss(1, 0.1) for x in xs)
 
 
-def cooling_schedule(t: float, _) -> float:
-    return t * 0.999
-
-
 def main():
     t, x1, x2, x3, x4 = map(float, input().split())
 
     best_solution, best_result = meta.simulated_annealing(
         function=salomon,
         initial_solution=(x1, x2, x3, x4),
-        initial_temperature=10 ** 5,
-        cooling_schedule=cooling_schedule,
+        initial_temperature=10 ** 6,
+        cooling_schedule=lambda t, _: t * 0.9999,
         timeout=t,
         tweak=tweak,
     )

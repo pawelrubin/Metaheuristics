@@ -29,10 +29,7 @@ class Maze:
     def __init__(self, maze_map: List[str]):
         self.map = maze_map
         self.start = next(
-            (i, j)
-            for i, row in enumerate(maze_map)
-            for j, field in enumerate(row)
-            if field == Field.AGENT.value
+            (i, j) for i, row in enumerate(maze_map) for j, field in enumerate(row) if field == Field.AGENT.value
         )
         self.size = len(maze_map) * len(maze_map[0])
         self.n, self.m = len(maze_map), len(maze_map[0])
@@ -87,21 +84,13 @@ class Maze:
         while self.map[x][y] != Field.EXIT.value:
             for m in [m.value for m in Move]:
                 nx, ny = tuple_sum((x, y), m)
-                if (
-                    nx in range(self.n)
-                    and ny in range(self.m)
-                    and self.map[nx][ny] == Field.EXIT.value
-                ):
+                if nx in range(self.n) and ny in range(self.m) and self.map[nx][ny] == Field.EXIT.value:
                     path.append(m)
                     return path
 
             nx, ny = tuple_sum((x, y), move)
 
-            if (
-                nx not in range(self.n)
-                or ny not in range(self.m)
-                or self.map[nx][ny] == Field.WALL.value
-            ):
+            if nx not in range(self.n) or ny not in range(self.m) or self.map[nx][ny] == Field.WALL.value:
                 move = self.next_move(move)
             else:
                 x, y = nx, ny

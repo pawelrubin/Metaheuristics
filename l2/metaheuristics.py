@@ -45,7 +45,7 @@ def simulated_annealing(
 
     start = now()
     i = 1
-    while now() - start <= timeout:
+    while now() - start <= timeout and temperature > 0:
         tweaked_solution = tweak(deepcopy(current_solution) if deep_input else current_solution)
         tweaked_result = function(tweaked_solution)
 
@@ -59,6 +59,5 @@ def simulated_annealing(
 
         temperature = cooling_schedule(temperature, i)
         i += 1
-    print(i)
 
     return best_solution, best_result

@@ -173,8 +173,8 @@ def main():
 
     best_solution, best_result = meta.simulated_annealing(
         function=mse_distance(matrix, n, m),
-        initial_solution=random_block_matrix(n, m, k),
-        initial_temperature=10 ** 2,
+        initial_solution=random_block_matrix(n, m, k + 1),
+        initial_temperature=1.52,
         cooling_schedule=lambda t, _: t * 0.85,
         tweak=tweak_factory(k),
         timeout=t,
