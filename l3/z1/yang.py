@@ -64,11 +64,10 @@ def tweak_factory(sigma: float) -> VectorTweak:
 
 
 def selection_factory(fitness: VectorFunc, t: int) -> VectorSelection:
-    def selection(population: List[Vector]):
+    def selection(population: List[Vector]) -> Vector:
         return tournament_selection(population, fitness, t)
 
     return selection
-
 
 
 def ga(
@@ -104,7 +103,7 @@ def ga(
     return best, fitness(best)
 
 
-def main():
+def main() -> None:
     _input = input().split()
     t = int(_input[0])
     xs = tuple(map(int, _input[1:6]))
